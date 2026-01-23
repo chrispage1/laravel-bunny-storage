@@ -18,6 +18,7 @@ class BunnyStorageServiceProvider extends ServiceProvider
         Storage::extend('bunny', function($app, $config) {
             $root = $config['root'] ?? '';
             $pullZoneUrl = $config['pull_zone'] ?? '';
+            $tokenAuthKey = $config['token_auth_key'] ?? '';
 
             if ($pullZoneUrl && $root) {
                 $pullZoneUrl = rtrim($pullZoneUrl, '/') . '/' . ltrim($root, '/');
@@ -29,8 +30,10 @@ class BunnyStorageServiceProvider extends ServiceProvider
                     $config['api_key'],
                     $config['region'],
                 ),
-                $pullZoneUrl
+                $pullZoneUrl,
             );
+
+            $adapter->setTokenAuthKey($tokenAuthKey);
 
             if ($root) {
                 $pathPrefixedAdapter =  new PathPrefixedAdapter($adapter, $root);

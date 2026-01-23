@@ -7,9 +7,11 @@ use PlatformCommunity\Flysystem\BunnyCDN\BunnyCDNAdapter as BaseAdapter;
 
 class StreamingBunnyStorageAdapter extends BaseAdapter
 {
-    public function __construct(StreamingBunnyStorageClient $client, string $pullZoneUrl = '')
+    public function __construct(StreamingBunnyStorageClient $client, string $pullZoneUrl = '', string $tokenAuthKey = '')
     {
         parent::__construct($client, $pullZoneUrl);
+        $this->setTokenAuthKey($tokenAuthKey);
+
         $this->client = $client;
     }
 

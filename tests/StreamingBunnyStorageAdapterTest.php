@@ -23,6 +23,7 @@ class StreamingBunnyStorageAdapterTest extends TestCase
                 'driver' => 'bunny',
                 'storage_zone' => 'test-zone',
                 'api_key' => 'test-api-key',
+                'token_auth_key' => 'test-auth-key',
                 'region' => 'ny',
             ]
         ]);
